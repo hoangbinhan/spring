@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Shopping Cart Finalize</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <div class="img">
+
+         <img width="650px" height="130px" src="https://png.pngtree.com/element_origin_min_pic/17/07/21/4a1c50ff1cf44c7956c0de611fbc8e19.jpg"/>
+
+      </div>
+   </head>
+   <body>
+    
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Giao dịch thành công !!!</div>
+      <div class="container">
+         <h3>Cảm ơn bạn đã mua bánh ở shop</h3>
+         Mã đặt hàng của bạn là: <span th:utext="${lastOrderedCart.orderNum}"></span>
+
+      </div>
+
+      <p>
+         <iframe width="500" height="300" src="https://www.youtube.com/embed/Tf6Za9KhMvg?rel=0&autoplay=1" frameborder="0"
+                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen></iframe>
+      </p>
+
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

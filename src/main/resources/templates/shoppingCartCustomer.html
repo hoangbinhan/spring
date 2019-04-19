@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Enter Customer Information</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+
+      <div class="img">
+
+         <img width="650px" height="130px" src="https://png.pngtree.com/element_origin_min_pic/17/07/21/4a1c50ff1cf44c7956c0de611fbc8e19.jpg"/>
+
+      </div>
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Vui lòng nhập thông tin cá nhân</div>
+       
+      <form method="POST" th:object = "${customerForm}" th:action="@{/shoppingCartCustomer}">
+         <div class="form-group">
+            <label for="exampleInputName1">Name*</label>
+            <input th:field="*{name}" class="form-control" id="exampleInputName1" placeholder="Name">
+            <span class="error-message"
+                  th:if="${#fields.hasErrors('name')}" th:errors="*{name}">..</span>
+         </div>
+         <div class="form-group">
+            <label for="exampleInputEmail1">Email*</label>
+            <input th:field="*{email}" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            <span class="error-message"
+                  th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
+         </div>
+         <div class="form-group">
+            <label for="exampleInputPhone1">Phone*</label>
+            <input th:field="*{phone}" class="form-control" id="exampleInputPhone1" placeholder="Phone">
+            <span class="error-message"
+                  th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">..</span>
+         </div>
+         <div class="form-group">
+            <label for="exampleInputAddress1">Address*</label>
+            <input th:field="*{address}" class="form-control" id="exampleInputAddress1" placeholder="Address">
+            <span class="error-message"
+                  th:if="${#fields.hasErrors('address')}" th:errors="*{address}">..</span>
+         </div>
+            <tr>
+               <td>&nbsp;</td>
+               <td><input type="submit" value="Submit" /> <input type="reset"
+                  value="Reset" /></td>
+            </tr>
+
+          
+      </form>
+
+
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

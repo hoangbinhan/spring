@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Shopping Cart Confirmation</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Xác nhận đơn hàng</div>
+      <div class="customer-info-container">
+         <h3>Thông tin khách hàng:</h3>
+         <div class="img">
+
+            <img width="650px" height="130px" src="http://cdn.onlinewebfonts.com/svg/img_237568.png"/>
+
+
+         </div>
+         <ul>
+            <li>Name: <span th:utext="${myCart.customerInfo.name}"></span></li>
+            <li>Email: <span th:utext="${myCart.customerInfo.email}"></span></li>
+            <li>Phone: <span th:utext="${myCart.customerInfo.phone}"></span></li>
+            <li>Address: <span th:utext="${myCart.customerInfo.address}"></span></li>
+         </ul>
+         <h3>Chi tiết giỏ hàng :</h3>
+         <ul>
+            <li>Số lượng : <span th:utext="${myCart.quantityTotal}"></span></li>
+            <li>Tổng tiền :
+               <span class="total"
+                  th:utext="${#numbers.formatDecimal(myCart.amountTotal,3,2,'COMMA')}">  
+               </span>
+            </li>
+         </ul>
+      </div>
+      <form method="POST" th:action="@{/shoppingCartConfirmation}">
+         <!-- Edit Cart -->
+         <a class="navi-item" th:href="@{/shoppingCart}">
+         Edit Cart
+         </a>
+         <!-- Edit Customer Info -->
+         <a class="navi-item" th:href="@{/shoppingCartCustomer}">
+         Edit Customer Info
+         </a>
+         <!-- Send/Save -->
+         <input type="submit" value="Send" class="button-send-sc"/>
+      </form>
+      <div class="container">
+         <div class="product-preview-container" th:each="cartLineInfo : ${myCart.cartLines}">
+            <ul>
+               <ul>
+                  <img class="product-image"
+                       th:src="@{|/productImage?code=${cartLineInfo.productInfo.code}|}" />
+               </ul>
+               <li>
+                  Code: <span th:utext="${cartLineInfo.productInfo.code}"></span>
+                  <input
+                     type="hidden" name="code" th:value="${cartLineInfo.productInfo.code}" />
+               </li>
+               <li>Name: <span th:utext="${cartLineInfo.productInfo.name}"></span></li>
+               <li>Price:
+                  <span class="price"
+                     th:utext="${#numbers.formatDecimal(cartLineInfo.productInfo.price,3,2,'COMMA')}">
+                  </span>
+               </li>
+               <li>Quantity: <span th:utext="${cartLineInfo.quantity}"></span></li>
+               <li>Subtotal:
+                  <span class="subtotal"
+                     th:utext="${#numbers.formatDecimal(cartLineInfo.amount,3,2,'COMMA')}">
+                  </span>
+               </li>
+            </ul>
+         </div>
+      </div>
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

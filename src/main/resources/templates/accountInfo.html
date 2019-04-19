@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8">
+      <title>Account Info</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <div class="img">
+
+         <img width="650px" height="130px" src="https://png.pngtree.com/element_origin_min_pic/17/07/21/4a1c50ff1cf44c7956c0de611fbc8e19.jpg"/>
+
+      </div>
+   </head>
+   <body>
+    
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+       
+      <div class="page-title">Thông tin của tài khoản</div>
+
+      <table border="1" style="width:100%">
+         <tr>
+            <th>Tên tài khoản</th>
+            <th>Chức vụ</th>
+
+         </tr>
+         <tr>
+            <td th:utext="${#request.userPrincipal.name}"></td>
+            <td th:each="auth : ${userDetails.authorities}" th:utext="${auth.authority}"></td>
+         </tr>
+      </table>
+
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>

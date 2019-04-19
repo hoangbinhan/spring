@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+   <head>
+      <meta charset="UTF-8">
+      <title>Đăng Nhập</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <div class="img">
+
+         <img width="650px" height="130px" src="https://png.pngtree.com/element_origin_min_pic/17/07/21/4a1c50ff1cf44c7956c0de611fbc8e19.jpg"/>
+
+      </div>
+   </head>
+   <body>
+
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      <div class="page-title">Đăng Nhập</div>
+
+      <div class="login-container">
+
+
+         <h3>Nhập tài khoản và mật khẩu</h3>
+         <br>
+         <!-- /login?error=true -->
+         <th:block th:if="${#session != null && #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}">
+             <div th:if= "${#request.getParameter('error') == 'true'}"
+                style="color: red; margin: 10px 0px;">
+                Login Failed!!!<br /> Reason :
+                <span th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"></span>
+             </div>
+         </th:block>
+          
+         <form method="POST"
+            th:action="@{/j_spring_security_check}">
+            <table>
+               <tr>
+                  <td>Tên đăng nhập :</td>
+                  <td><input name="userName" /></td>
+               </tr>
+               <tr>
+                  <td>Mật khẩu :</td>
+                  <td><input type="password" name="password" /></td>
+               </tr>
+               <tr>
+                  <td>&nbsp;</td>
+                  <td>
+                      <input type="submit" value="Đăng nhập" />
+                      <input type="reset"  value="Nhập lại" />
+                  </td>
+               </tr>
+            </table>
+         </form>
+          
+         <span class="error-message" th:utext="${error}"></span>
+      </div>
+       
+
+       
+      <th:block th:include="/_footer"></th:block>
+       
+   </body>
+</html>
